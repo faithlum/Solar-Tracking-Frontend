@@ -1,0 +1,52 @@
+.rectangle-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .rectangle {
+    position: relative;
+    width: 600px;
+    height: 60px;
+    border: 2px solid #000;
+    /* margin-bottom: 30px; */
+  }
+  
+  .vertical-line {
+    position: absolute;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    background-color: #000;
+  }
+  
+  .target-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 7px;
+    height: 100%;
+    background-color: #00ff00;
+    opacity: 0.4;
+  }
+  
+  .angle-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    height: 60px;
+    /* background-color: #00ff00; */
+    padding: 0 20px; /* Add padding to create space between labels and the container edges */
+  }
+  
+  .angle-label {
+    font-size: 16px;
+  }
+
+  .target-label {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  

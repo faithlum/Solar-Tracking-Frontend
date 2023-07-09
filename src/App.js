@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import RectangleIndicator from './Components/AngleVisualizer';
+import AxialTilt from './Components/AxialTilt';
+import UserInputForm from './Components/UserInput';
+import Calibrate from './Components/Calibration';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/visualize" element={<RectangleIndicator/>} />  
+        <Route path="/input" element={<UserInputForm/>} />
+        {/* <Route path="/calibrate" element={<Calibrate/>} /> */}
+        {/* <Route path="/contact" component={Contact} /> */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
