@@ -26,6 +26,8 @@ const RectangleIndicator = () => {
   const [isRunning, setIsRunning] = useState(false);  // State for tracking if the stream is running
   // let eventSource;  // Declare the eventSource variable outside the functions
   const eventSourceRef = useRef(null);
+  let correct_iter = 0;
+  const CORRECT_NUM = 5;
 
 
   const handleChange = (event) => {
@@ -50,9 +52,13 @@ const RectangleIndicator = () => {
 
     eventSourceRef.current.onmessage = event => {
       const data = event.data;
+      const MAX_ERROR = 0.5;
       console.log(data)
       setAngle(data);
-      if (data >= target) {
+      if (Math.abs(data - target) < MAX_ERROR) {
+        correct_iter += 1;
+      }
+      if (correct_iter >= CORRECT_NUM) {
         eventSourceRef.current.close();  // Close the SSE connection
         setIsRunning(false); 
       }
