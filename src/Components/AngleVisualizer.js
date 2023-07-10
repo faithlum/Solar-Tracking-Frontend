@@ -61,7 +61,7 @@ const RectangleIndicator = () => {
       if (correct_iter >= CORRECT_NUM) {
         eventSourceRef.current.close();  // Close the SSE connection
         setIsRunning(false); 
-        sendSSECloseRequest(); 
+        sendSSECloseRequest()
       }
     };
     setIsRunning(true); 
@@ -70,10 +70,17 @@ const RectangleIndicator = () => {
     };
   };
 
+  useEffect(() => {
+    console.log("hi")
+    if (!isRunning && correct_iter >= CORRECT_NUM) {
+      console.log("hi inside")
+    }
+  }, [isRunning]);
 
   const sendSSECloseRequest = async () => {
+    console.log("sending")
     try {
-      await fetch('http://localhost:8000/sse-close-notification/', {
+      await fetch('http://localhost:8000/api/sse-close-notification', {
         method: 'POST',
       });
     } catch (error) {
