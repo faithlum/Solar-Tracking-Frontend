@@ -61,12 +61,24 @@ const RectangleIndicator = () => {
       if (correct_iter >= CORRECT_NUM) {
         eventSourceRef.current.close();  // Close the SSE connection
         setIsRunning(false); 
+        sendSSECloseRequest(); 
       }
     };
     setIsRunning(true); 
     return () => {
       eventSourceRef.current.close();  // Close the SSE connection when the component unmounts
     };
+  };
+
+
+  const sendSSECloseRequest = async () => {
+    try {
+      await fetch('http://localhost:8000/sse-close-notification/', {
+        method: 'POST',
+      });
+    } catch (error) {
+      console.error('Error sending SSE close request:', error);
+    }
   };
 
   const handleStopButtonClick = () => {
